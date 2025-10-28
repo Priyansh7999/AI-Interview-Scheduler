@@ -1,19 +1,27 @@
 "use client"
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import InterviewHeader from '../_components/InterviewHeader'
 import Image from 'next/image'
-import { Clock, Info, Video } from 'lucide-react'
+import { Clock, Info, Loader2Icon, Video } from 'lucide-react'
 import { Input } from '@/components/ui/input'
 import { Button } from '@/components/ui/button'
-import { useParams } from 'next/navigation'
+import { useParams, useRouter } from 'next/navigation'
 import { supabase } from '@/services/supabaseClient'
 import { toast } from 'sonner'
+import { InterviewDataContext } from '@/context/InterviewDataContext'
 
 function Interview() {
     const { interview_id } = useParams();
     const [interviewData, setInterviewData] = useState();
     const [userName, setUserName] = useState();
+    const [userEmail, setUserEmail] = useState();
     const [loading, setLoading] = useState(false);
+    const { InterviewInfo, setInterviewInfo } = useContext(InterviewDataContext);
+    // cosnt [loading, setLoading] = useState(false);
+    const router = useRouter();
+
+
+
     useEffect(() => {
         interview_id && GetInterviewDeatils();
     }, [interview_id])
@@ -23,21 +31,41 @@ function Interview() {
             const { data: Interviews, error } = await supabase
                 .from('Interviews')
                 .select("jobPosition,jobDescription,interviewDuration,type")
-                .eq('interview_id', interview_id)
-            setInterviewData(Interviews[0]);
-            setLoading(false);
-            if(Interviews?.length == 0){
+                .eq('interview_id', interview_id);
+
+            console.log(Interviews);
+
+            if (Interviews?.length === 0) {
                 toast.error("Invalid Interview Link");
+                setLoading(false);
                 return;
             }
+
+            setInterviewData(Interviews[0]);
+            setLoading(false);
         } catch (error) {
-            console.log("Error fetching interview details:", error);
+            console.error("Error fetching interview details:", error);
             toast.error("Error fetching interview details");
             setLoading(false);
         }
+    };
 
-
+    const onJoinInterview = async () => {
+        setLoading(true);
+        const { data: Interviews, error } = await supabase
+            .from('Interviews')
+            .select('*')
+            .eq('interview_id', interview_id);
+        console.log(Interviews);
+        setInterviewInfo({
+            userName,
+            userEmail,
+            InterviewData:Interviews[0],
+        });
+        router.push('/interview/' + interview_id + '/start');
+        setLoading(false);
     }
+
 
     return (
         <div className='px-10 md:px-28 lg:px-48 xl:px-80 mt-16'>
@@ -52,7 +80,19 @@ function Interview() {
 
                 <div className='w-full'>
                     <h2>Enter Your Full Name</h2>
-                    <Input type='text' placeholder='e.g. Priyansh Saxena' className='mt-2' />
+                    <Input
+                        type='text'
+                        onChange={(e) => setUserName(e.target.value)}
+                        value={userName}
+                        placeholder='e.g. Priyansh Saxena'
+                        className='mt-2' />
+                    <h2 className='mt-4'>Enter Your Email</h2>
+                    <Input
+                        type='text'
+                        value={userEmail}
+                        onChange={(e) => setUserEmail(e.target.value)}
+                        placeholder='e.g. abc@gmail.com'
+                        className='mt-2' />
                 </div>
 
                 <div className=" rounded-xl p-5 border mt-2 border-indigo-100">
@@ -62,10 +102,7 @@ function Interview() {
                             'Provide a proper name & valid email address',
                             'Give access to your microphone',
                             'Ensure a stable internet connection',
-                            'Enable camera permissions',
-                            'Use Chrome or Edge browser',
                             'Find a quiet environment',
-                            'Have your resume handy'
                         ].map((item, i) => (
                             <li key={i} className="flex items-center gap-3">
                                 <span className="text-primary mt-1">•</span>
@@ -75,7 +112,14 @@ function Interview() {
                     </ul>
                 </div>
 
-                <Button variant='default' className={"mt-5 w-full font-semibold"}><Video />Join Interview</Button>
+                <Button
+                    variant='default' disabled={loading || !userName}
+                    onClick={() => onJoinInterview()}
+                    className={"mt-5 w-full font-semibold"}>
+                    <Video />
+                    {loading && <Loader2Icon />}
+                    Join Interview
+                </Button>
 
             </div>
         </div>
