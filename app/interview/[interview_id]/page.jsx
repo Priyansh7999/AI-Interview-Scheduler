@@ -13,14 +13,11 @@ import { InterviewDataContext } from '@/context/InterviewDataContext'
 function Interview() {
     const { interview_id } = useParams();
     const [interviewData, setInterviewData] = useState();
-    const [userName, setUserName] = useState();
-    const [userEmail, setUserEmail] = useState();
+    const [userName, setUserName] = useState('');
+    const [userEmail, setUserEmail] = useState('');
     const [loading, setLoading] = useState(false);
     const { InterviewInfo, setInterviewInfo } = useContext(InterviewDataContext);
-    // cosnt [loading, setLoading] = useState(false);
     const router = useRouter();
-
-
 
     useEffect(() => {
         interview_id && GetInterviewDeatils();
@@ -82,13 +79,13 @@ function Interview() {
                     <h2>Enter Your Full Name</h2>
                     <Input
                         type='text'
-                        onChange={(e) => setUserName(e.target.value)}
                         value={userName}
+                        onChange={(e) => setUserName(e.target.value)}
                         placeholder='e.g. Priyansh Saxena'
                         className='mt-2' />
                     <h2 className='mt-4'>Enter Your Email</h2>
                     <Input
-                        type='text'
+                        type='email'
                         value={userEmail}
                         onChange={(e) => setUserEmail(e.target.value)}
                         placeholder='e.g. abc@gmail.com'
@@ -113,7 +110,7 @@ function Interview() {
                 </div>
 
                 <Button
-                    variant='default' disabled={loading || !userName}
+                    variant='default' disabled={loading || !userName || !userEmail}
                     onClick={() => onJoinInterview()}
                     className={"mt-5 w-full font-semibold"}>
                     <Video />

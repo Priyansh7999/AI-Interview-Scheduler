@@ -23,6 +23,10 @@ export default function AppSidebar() {
     const path = usePathname();
     const router = useRouter();
     const { user, setUser } = useUser();
+    const handleLogout = () => {
+        localStorage.removeItem("authToken"); // Clear auth token
+        router.push("/login"); // Redirect to login page
+    };
     return (
         <Sidebar>
             <SidebarHeader className={'flex items-center mt-5'}>
@@ -70,10 +74,7 @@ export default function AppSidebar() {
                 <Button
                     className="w-full cursor-pointer text-center"
                     variant={"destructive"}
-                    onClick={() => {
-                        setUser(null);
-                        router.push('/');
-                    }}
+                    onClick={handleLogout}
                 >
                     <LogOut className="mr-2" />
                     Logout

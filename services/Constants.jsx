@@ -67,9 +67,9 @@ Interview Type: {{type}}
 
 Analyze the job description to identify key responsibilities, required skills, and expected experience.
 
-Generate a list of interview questions depends on interview duration
+Generate a list of interview questions depends on interview duration {{Interview Duration}}
 
-Adjust the number and depth of questions to match the interview duration or more.
+Adjust the number and depth of questions to match the interview duration {{Interview Duration}} or more.
 
 Ensure the questions match the tone and structure of a real-life {{type}} interview.
 
@@ -77,7 +77,7 @@ Ensure the questions match the tone and structure of a real-life {{type}} interv
 format: interviewQuestions=[
 {
  question:'',
- type:'Technical/Behavioral/Experience/Problem Solving/Leadership'
+ type:'Technical/Behavioral/Experience/Problem Solving/Leadership',
 },{
 ...
 }]
@@ -95,30 +95,18 @@ Communication, Problem Solving, Experience. Also give me summery in 3 lines
 about the interview and one line to let me know whether is recommended 
 
 for hire or not with message very strictly. Give me response in JSON format
-
 {
-
     feedback:{
-
         rating:{
-
             TechnicalSkills:5,
-
             Communication:6,
-
             ProblemSolving:4,
-
             Experience:7,
-
             Behavioral:8,
-
             Analysis:9
-
-
-
         },
 
-        summery:<in 3 Line>,
+        summary:<in 3-4 Line>,
 
         Recommendation:'',
 
