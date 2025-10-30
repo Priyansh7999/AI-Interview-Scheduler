@@ -1,6 +1,7 @@
 import { Button } from '@/components/ui/button'
 import { ArrowRight, Copy, Send } from 'lucide-react'
 import moment from 'moment'
+import Link from 'next/link'
 import React from 'react'
 import { toast } from 'sonner'
 
@@ -29,24 +30,26 @@ function InterviewCard({ interview, viewDetails = false }) {
 
             {
                 !viewDetails ?
-                <div className="flex gap-3 mt-4 space-y-2">
-                    <Button
-                        variant="outline"
-                        className="flex-1 flex items-center justify-center gap-2"
-                        onClick={copyLink}
-                    >
-                        <Copy size={16} className="text-gray-600 dark:text-gray-300" />
-                        <span>Copy Link</span>
-                    </Button>
-                    <Button
-                        className="flex-1 flex items-center justify-center gap-2"
-                        onClick={onSend}
-                    >
-                        <Send size={16} className="text-blue-600" />
-                        <span>Send</span>
-                    </Button>
-                </div> : 
-                    <Button className={"mt-5 w-full flex items-center justify-center"} variant={"outline"}>View Details <ArrowRight /></Button>
+                    <div className="flex gap-3 mt-4 space-y-2">
+                        <Button
+                            variant="outline"
+                            className="flex-1 flex items-center justify-center gap-2"
+                            onClick={copyLink}
+                        >
+                            <Copy size={16} className="text-gray-600 dark:text-gray-300" />
+                            <span>Copy Link</span>
+                        </Button>
+                        <Button
+                            className="flex-1 flex items-center justify-center gap-2"
+                            onClick={onSend}
+                        >
+                            <Send size={16} className="text-blue-600" />
+                            <span>Send</span>
+                        </Button>
+                    </div> :
+                    <Link href={'/scheduled-interview/' + interview?.interview_id + "/details"}>
+                        <Button className={"mt-5 w-full flex items-center justify-center"} variant={"outline"}>View Details <ArrowRight /></Button>
+                    </Link>
             }
 
         </div>
