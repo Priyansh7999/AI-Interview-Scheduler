@@ -90,7 +90,7 @@ Depends on this Interview Conversation between assitant and user,
 
 Give me feedback for user interview. Give me rating out of 10 for technical Skills, 
 
-Communication, Problem Solving, Experience. Also give me summery in 3 lines 
+Communication, Problem Solving, Experience, Behavioral, Analysis and OverallRating(average of all rating out of 10). Also give me summery in 3 lines 
 
 about the interview and one line to let me know whether is recommended 
 
@@ -103,7 +103,8 @@ for hire or not with message very strictly. Give me response in JSON format
             ProblemSolving:4,
             Experience:7,
             Behavioral:8,
-            Analysis:9
+            Analysis:9,
+            OverallRating:6.5
         },
 
         summary:<in 3-4 Line>,
@@ -111,9 +112,6 @@ for hire or not with message very strictly. Give me response in JSON format
         Recommendation:'',
 
         Recommendation Message:''
-
-
-
     }
 
 }

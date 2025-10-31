@@ -36,7 +36,7 @@ function CandidateFeedbackDialog({ candidate }) {
                                     </div>
                                 </div>
                                 <div className='flex gap-3 items-center justify-between'>
-                                    <h2 className='text-chart-2 text-2xl font-bold'>6/10</h2>
+                                    <h2 className='text-chart-2 text-2xl font-bold'>{feedback?.rating?.OverallRating}/10</h2>
                                 </div>
                             </div>
 

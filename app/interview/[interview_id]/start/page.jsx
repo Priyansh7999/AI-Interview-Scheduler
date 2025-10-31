@@ -195,6 +195,7 @@ Key Guidelines:
             const feedbackData = result?.data;
 
             console.log("Parsed Feedback:", feedbackData);
+            const candidateResult = feedbackData?.feedback?.rating?.OverallRating;;
             const { data, error } = await supabase
                 .from('interview-feedback')
                 .insert([
@@ -203,7 +204,7 @@ Key Guidelines:
                         userEmail: InterviewInfo?.userEmail,
                         interview_id: interview_id,
                         feedback: feedbackData.feedback || feedbackData,
-                        recommended: false
+                        recommended: candidateResult >= 7,
                     },
                 ])
                 .select();
