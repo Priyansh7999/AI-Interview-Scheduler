@@ -1,7 +1,6 @@
-    ![AI Recruiter Homepage](public/logo1.png)
+![AI Recruiter Homepage](public/logo1.png)
 
-# 
-    AI Recruiter Voice Agent
+# AI Recruiter Voice Agent
 
 an AI Recruiter Voice Agent that can create job interviews and conduct them using voice! Perfect for HR tech, recruitment automation, and AI enthusiasts! 💼✨
 
