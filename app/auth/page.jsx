@@ -17,7 +17,18 @@ function Login() {
     }
   };
   return (
-    <div className='flex flex-col items-center justify-center min-h-screen'>
+    <div className='flex flex-col items-center justify-center min-h-screen bg-gradient-to-b antialiased'>
+            {/* fullscreen background image (fixed, behind content) */}
+            <div className="fixed inset-0 -z-10 pointer-events-none select-none">
+              <Image
+                src="/bg.svg"
+                alt="Background Pattern"
+                width={600}
+                height={100}
+                className="w-full h-full object-fill rotate-90"
+                priority
+              />
+            </div>
       <div className='flex flex-col items-center gap-4 border rounded-2xl p-6 '>
         <Image
           src={'/logo1.png'}

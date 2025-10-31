@@ -10,8 +10,6 @@ import {
     DialogTrigger,
 } from "@/components/ui/dialog"
 import { Button } from '@/components/ui/button'
-import { Input } from "@/components/ui/input"
-import { Label } from "@/components/ui/label"
 import { Progress } from '@/components/ui/progress'
 function CandidateFeedbackDialog({ candidate }) {
     const feedback = candidate?.feedback;

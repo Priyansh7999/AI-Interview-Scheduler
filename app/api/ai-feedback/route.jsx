@@ -23,20 +23,17 @@ export async function POST(req) {
     const completion = await openai.chat.completions.create({
       model: "gpt-4o-mini",
       messages: [{ role: "user", content: FINAL_PROMPT }],
-      response_format: { type: "json_object" }, // Force JSON output
+      response_format: { type: "json_object" }, 
     });
 
-    // Clean the response content
     let content = completion.choices[0].message.content;
     content = content
       .replace(/```json\s*/g, '')
       .replace(/```\s*/g, '')
       .trim();
-
-    // Return parsed JSON directly
     return NextResponse.json(JSON.parse(content));
   } catch (error) {
-    console.error("🔥 API ERROR:", error.message, error);
+    console.error("API ERROR:", error.message, error);
     return NextResponse.json({ error: error.message }, { status: 500 });
   }
 }
