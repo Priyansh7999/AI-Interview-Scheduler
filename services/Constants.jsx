@@ -92,7 +92,7 @@ Give me feedback for user interview. Give me rating out of 10 for technical Skil
 
 Communication, Problem Solving, Experience, Behavioral, Analysis and OverallRating(average of all rating out of 10). Also give me summery in 3 lines 
 
-about the interview and one line to let me know whether is recommended 
+about the interview and one line to let me know whether is recommended for recommendation OverallRating should be greater than equal to 7
 
 for hire or not with message very strictly. Give me response in JSON format
 {
@@ -106,7 +106,6 @@ for hire or not with message very strictly. Give me response in JSON format
             Analysis:9,
             OverallRating:6.5
         },
-
         summary:<in 3-4 Line>,
 
         Recommendation:'',

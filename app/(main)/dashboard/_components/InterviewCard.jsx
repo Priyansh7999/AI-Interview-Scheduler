@@ -25,7 +25,7 @@ function InterviewCard({ interview, viewDetails = false }) {
             <h2 className='mt-3 font-bold text-lg'>{interview?.jobPosition}</h2>
             <h2 className='mt-2 font-normal text-muted-foreground flex justify-between'>
                 {interview?.interviewDuration}
-                <span className='text-red-700'>{interview['interview-feedback']?.length} Candidates</span>
+                {interview['interview-feedback']?.length &&  <span className='text-red-700'>{interview['interview-feedback']?.length} Candidates</span>}
             </h2>
 
             {

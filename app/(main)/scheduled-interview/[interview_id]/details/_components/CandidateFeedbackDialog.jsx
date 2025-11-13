@@ -13,6 +13,7 @@ import { Button } from '@/components/ui/button'
 import { Progress } from '@/components/ui/progress'
 function CandidateFeedbackDialog({ candidate }) {
     const feedback = candidate?.feedback;
+    console.log("feedback", feedback);
     return (
         <Dialog>
             <DialogTrigger asChild>
